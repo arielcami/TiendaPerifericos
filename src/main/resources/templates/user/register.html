@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/register_style.css}" rel="stylesheet">
+    <title>P.A.L Store - Registro</title>
+    <link rel="icon" th:href="@{/img/ICONO.png}" type="image/x-icon">
+</head>
+
+<body>
+	
+	
+	<div class="elvedaderodiv">
+		<h1 th:text="'Bienvenido a P.A.L. Store'" class="pulsado"></h1>
+	</div>
+	
+    <div class="register-container">
+        <h2>Crear cuenta</h2>
+        <form th:action="@{/user/register}" th:object="${usuarioDTO}" method="post">
+            <input type="text" th:field="*{username}" placeholder="Usuario" required>
+            <div th:if="${#fields.hasErrors('username')}" style="color:red;">
+                <p th:errors="*{username}"></p>
+            </div>
+            
+            <input type="password" th:field="*{password}" placeholder="Contraseña" required>
+            <div th:if="${#fields.hasErrors('password')}" style="color:red;">
+                <p th:errors="*{password}"></p>
+            </div>
+            
+            <input type="password" th:field="*{confirm_password}" placeholder="Confirmar contraseña" required>
+            <div th:if="${#fields.hasErrors('confirm_password')}" style="color:red;">
+                <p th:errors="*{confirm_password}"></p>
+            </div>
+            
+            <input type="email" th:field="*{correo}" placeholder="Correo electrónico" required>
+            <div th:if="${#fields.hasErrors('correo')}" style="color:red;">
+                <p th:errors="*{correo}"></p>
+            </div>
+            
+            <input type="submit" value="Registrarse">
+            
+            <div th:if="${error}" style="color:red;">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${success}" style="color:green;">
+                <p th:text="${success}"></p>
+            </div>
+        </form>
+        
+        <div class="login-text">
+            <p>¿Ya tienes cuenta? <a th:href="@{/user/login}">Inicia sesión aquí</a></p>
+        </div>
+        
+        <div class="container text-center mt-5">
+			<br>
+			<a th:href="@{#}" onclick="problema()" style="text-decoration: none; color: white; font-size: 13px;">
+				<span>Algo no funciona aquí...</span>
+			</a>
+		</div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/js/pass.js}"></script>
+</body>
+</html>

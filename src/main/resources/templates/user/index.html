@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P.A.L Store</title>
+<link rel="icon" th:href="@{/img/ICONO.png}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
+	rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+<!-- Custom CSS -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+
+<!-- SweetAlert2 CSS -->
+<link th:href="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css}" rel="stylesheet">
+
+<!-- SweetAlert2 JS -->
+<script	th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js}"></script>
+
+</head>
+
+<body>
+
+
+
+
+	<!-- Header -->
+	<header class="todotodo">
+		<div id="top-header">
+
+			<div class="container">
+
+				<div th:if="${success}" class="alert alert-success" role="alert"
+					id="successMessage">
+					<p th:text="${success}"></p>
+				</div>
+				<div th:if="${error}" class="alert alert-danger" role="alert"
+					id="errorMessage">
+					<p th:text="${error}"></p>
+				</div>
+
+
+				<ul class="header-links pull-left">
+					<li>
+						<a href="#" id="contactoBtn"><i class="fa fa-phone"></i>📧 Contacto</a>
+						</li>
+					<li>
+						<a href="#" id="nosotrosBtn"><i	class="fa fa-map-marker"></i>👥 Nosotros</a>
+					</li>
+				</ul>
+				
+				<ul class="header-links pull-right">
+					<li th:if="${username != null}">👤 <span id="username"
+						class="username-style" th:text="${username}"></span>
+					</li>
+					<li th:if="${username == null}"><a href="/user/login"><i
+							class="fa fa-user-o"></i>🔑 Iniciar sesión</a></li>
+					<li th:if="${username != null}"><a href="#"
+						onclick="cerrarSesionYborrarLS()"> <i class="fa fa-sign-out"></i>🚪
+							Cerrar sesión
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+
+		<div id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo"> <img th:src="@{/img/logo.jpg}"
+								alt="logo" width="100%">
+							</a>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="header-search">
+							<form action="/productos" method="get">
+								<input type="text" name="nombre"
+									placeholder="Buscar productos..." class="input" />
+								<button type="submit" class="search-btn">🔍 Buscar</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+							<div>
+								<a href="#" id="carritoLink"> <i class="fa fa-shopping-cart"></i>
+									<span style="font-size: 15px;">🛒 Carrito</span> <br> <span
+									id="productosEnCarritoID" class="productos_en_el_carrito_index"
+									style="font-size: 18px;">0</span>
+								</a>
+
+
+								<!-- Modal carrito -->
+								<div id="carritoModal" class="carrito-modal-tabla">
+									<div class="carrito-modal-content">
+										<span id="closeCarritoModal" class="carrito-modal-close">&times;</span>
+										
+										<h2>Resumen de tu carrito</h2>
+
+										<!-- Tabla del carrito -->
+										<table class="table">
+											<thead>
+												<tr>
+													<th>Producto</th>
+													<th>Marca</th>
+													<th>Cantidad</th>
+													<th>Precio unitario</th>
+													<th>Sub total</th>
+													<th>Eliminar</th>
+												</tr>
+											</thead>
+											<tbody id="carritoResumen"></tbody>
+										</table>
+										<div id="totalCarrito">
+											<!-- Aquí deberían ir los impuestos de 12% -->
+											<strong>Total: S/ <span id="totalPrecio">0</span></strong> <br>
+											<button onclick="redirigirAlCarrito()"
+												class="btn btn-success">Confirmar y Pagar</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- NAVEGACIÓN -->
+	<nav id="navigation"></nav>
+
+	<div class="container product-container">
+		<div class="row">
+			<!-- Productos desde base de datos -->
+			<div th:each="producto : ${productos}"
+				class="col-lg-4 col-md-4 col-sm-4">
+				<div class="card">
+					<img
+						th:src="@{/img/{nombreImagen}(nombreImagen=${producto.imagen})}"
+						class="card-img-top" alt="Producto"
+						th:title="${producto.descripcion}">
+					<div class="card-body">
+						<h6 class="card-title" th:text="${producto.marca}">Marca</h6>
+						<h5 class="card-title" th:text="${producto.nombre}">Producto</h5>
+						<p class="card-text" th:text="'S/ ' + ${producto.precio}">Precio</p>
+						<p class="card-text" th:text="'Stock: ' + ${producto.stock}">Stock</p>
+
+						<!-- Botón para agregar al carrito -->
+						<button class="btn btn-danger" th:data-id="${producto.id}"
+							th:data-nombre="${producto.nombre}"
+							th:data-precio="${producto.precio}"
+							th:data-stock="${producto.stock}"
+							th:data-marca="${producto.marca}"
+							onclick="mostrarPopupDeAgregarAlCarrito(this)">Agregar
+							al carrito</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Popup para seleccionar cantidad -->
+	<div id="cantidadPopup" class="carrito-modal-cantidad">
+		<div class="carrito-modal-content">
+			<span class="carrito-modal-close" onclick="cerrarPopup()">&times;</span>
+			<h3>Indica la cantidad</h3>
+			<input type="number" id="cantidadInput" min="1" max="15" />
+			<button onclick="agregarAlCarritoConCantidad()"
+				class="btn btn-success">Agregar al carrito</button>
+		</div>
+	</div>
+
+	<div class="container text-center mt-5">
+		<a href="#" class="btn btn-secondary" id="politicasBtn">🔒 Políticas de Privacidad</a> 
+		<a href="#" class="btn btn-secondary" id="trabajaBtn">💼 Trabaja con Nosotros</a> 
+		<a href="#"	class="btn btn-secondary" id="terminosBtn">🛡️ Términos y	Condiciones</a>
+		<a href="#"	class="btn btn-secondary" id="reportarProblema">🐞 Reportar un problema</a>
+	</div>
+
+
+	<footer>
+		<p>© Grupo 6 - Diseño de Pruebas de Software - 2024</p>
+	</footer>
+
+	<!-- Bootstrap JS -->
+	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- SweetAlert2 -->
+	<script	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+
+	<!-- Funciones JS -->
+	<script th:src="@{/js/functions.js}"></script>
+
+
+</body>
+
+</html>

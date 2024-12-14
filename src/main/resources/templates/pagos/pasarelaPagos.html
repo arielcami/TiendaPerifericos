@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P.A.L Store</title>
+<link rel="icon" th:href="@{/img/ICONO.png}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+<!-- Custom CSS -->
+
+<!-- Custom CSS -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+
+<!-- SweetAlert2 CSS -->
+<link th:href="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css}"	rel="stylesheet">
+
+<!-- SweetAlert2 JS -->
+<script	th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js}"></script>
+
+<link type="text/css" rel="stylesheet" th:href="@{/css/tarjetaStylePago.css}" />
+
+</head>
+<body>
+	<!-- Header -->
+	<header class="todotodo">
+		<div id="top-header">
+
+			<div class="container">
+
+				<ul class="header-links pull-left">
+					<li><a href="#" id="contactoBtn"><i class="fa fa-phone"></i>📧 Contacto</a></li>
+					<li><a href="#" id="nosotrosBtn"><i	class="fa fa-map-marker"></i>👥 Nosotros</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<li th:if="${username != null}">👤 <span id="username" class="username-style" th:text="${username}"></span>
+					</li>
+					<li th:if="${username == null}"><a href="/user/login"> <i class="fa fa-user-o"></i>🔑 Iniciar sesión	</a></li>
+					<li th:if="${username != null}"><a href="#"	onclick="cerrarSesionYborrarLS()"> <i class="fa fa-sign-out"></i>🚪 Cerrar sesión</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo"> <img th:src="@{/img/logo.jpg}"
+								alt="logo" width="100%"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<br>
+	<div class="contenedorTodo">
+		<img th:src="@{/img/PY.png}" alt="logo" width="80%">
+		<div class="contenedorForm">
+		
+			<p>Total: S/ <span id="totalapagar">0.00</span></p> <!-- Esto debe traerse desde el localstorage -->
+
+			<form th:action="@{/pagos/procesar}" method="post">
+			    <div class="mb-3">
+			        <label class="form-label">Nombre completo *</label>
+			        <input type="text" name="nombreCompleto" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Número de Documento * (Puede ser Dni, Pasaporte o Carnet de Extranjería)</label>
+			        <input type="text" name="documento" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Dirección completa *</label> 
+			        <input type="text" name="direccion" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Referencia de dirección (Opcional)</label> 
+			        <input type="text" name="referencia" class="form-control">
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Ciudad/Región *</label> 
+			        <input type="text" name="ciudad" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Código Postal *</label> 
+			        <input type="text" name="codigoPostal" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Teléfono *</label> 
+			        <input type="text" name="telefono" class="form-control" required>
+			    </div>
+			    
+			    <div class="mb-3">
+			        <label class="form-label">Correo *</label>
+			        <input type="email" name="correo" class="form-control" required>
+			    </div>
+			    			    
+			    <div class="mb-3">
+			        <label class="form-label">Instrucciones especiales (Opcional)</label>
+			        <textarea name="instrucciones" class="form-control"></textarea>
+			    </div>
+			    
+			    <button type="submit" class="btn btn-success">Registrar Pago</button>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+</html>
+
+<!-- 
+
+josevillas natra$$23WIO.K
+
+ -->

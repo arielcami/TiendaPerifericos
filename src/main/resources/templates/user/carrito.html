@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P.A.L Store Carrito</title>
+<link rel="icon" th:href="@{/img/ICONO.png}" type="image/x-icon">
+<link
+	th:href="@{https://fonts.googleapis.com/css?family=Montserrat:400,500,700}"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="container carrito-container">
+		<h2>
+			Carrito de compras de: <span id="usernameLogueado"
+				th:text="${username}"></span>
+		</h2>
+
+
+		<div class="row carrito-header">
+			<div class="col-md-3">
+				<strong>Producto</strong>
+			</div>
+			<div class="col-md-2">
+				<strong>Marca</strong>
+			</div>
+			<div class="col-md-2">
+				<strong>Precio</strong>
+			</div>
+			<div class="col-md-2">
+				<strong>Subtotal</strong>
+			</div>
+			<div class="col-md-2">
+				<strong>Cantidad</strong>
+			</div>
+			<div class="col-md-1">
+				<strong>Eliminar</strong>
+			</div>
+		</div>
+
+		<!-- Aquí se cargarán los productos del carrito -->
+		<div id="carritoItems"></div>
+		<button class="btn btn-danger" onclick="home()">Regresar al Home</button>
+		<div class="row carrito-total">
+
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+
+				<h4>
+					Total del carrito: <span id="totalCarrito"></span>
+				</h4> 
+				
+				<form>
+				    <button type="button" class="btn btn-primary" onclick="realizarPago()">Pagar</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="container text-center mt-5">
+		<p>© Grupo 6 - Diseño de Pruebas de Software - 2024</p>
+	</footer>
+
+	<script th:src="@{/js/comprasCarrito.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+/* Contenedor principal de la tarjeta */
+.contenedorTodo {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo del formulario */
+    padding: 20px;
+    background-color: #1e1e1e; /* Fondo ligeramente más claro */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin: auto; /* Asegura el centrado horizontal */
+    font-size: 18px;
+}
+
+/* Imagen */
+.contenedorTodo img {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+/* Títulos */
+h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Campos del formulario */
+.form-label {
+    font-weight: 500;
+    color: #ffffff; /* Texto de etiquetas */
+}
+
+.form-control {
+    background-color: #f4f4f4; /* Fondo oscuro para inputs */
+    color: #000000; /* Texto blanco */
+    border: 1px solid #444; /* Borde oscuro */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #e63946; /* Rojo en foco */
+    box-shadow: 0 0 4px #e63946;
+}
+
+/* Botón */
+.btn-success {
+    background-color: #e63946; /* Rojo oscuro */
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: #ff4d5b; /* Rojo más claro al pasar el cursor */
+    transform: translateY(-2px);
+}
+
+.btn-success:active {
+    background-color: #a7252e; /* Rojo oscuro al hacer clic */
+    transform: translateY(0);
+}
+
+/* Textarea */
+textarea.form-control {
+    resize: none; /* Evita el redimensionamiento manual */
+}
+
+/* Select */
+select.form-control {
+    appearance: none; /* Elimina el estilo por defecto */
+    background-color: #f4f4f4;
+    color: #000000;
+    border: 1px solid #444;
+    padding: 1px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+/* Placeholder y textos vacíos */
+.form-control::placeholder {
+    color: #888; /* Texto placeholder */
+}
+
+option[disabled] {
+    color: #888;
+}
+
+.contenedorForm {
+	color: #FFFFFF;
+}

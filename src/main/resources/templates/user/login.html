@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/login_style.css}" rel="stylesheet">
+<title>P.A.L Store - Login</title>
+<link rel="icon" th:href="@{/img/ICONO.png}" type="image/x-icon">
+</head>
+
+<body>
+	<div class="elvedaderodiv">
+		<h1 th:text="'Bienvenido a P.A.L. Store'" class="pulsado"></h1>
+	</div>
+
+	<div class="login-container">
+		<h2>Iniciar Sesión</h2>
+
+		<!-- Mensaje de éxito si está presente -->
+		<div th:if="${success}" class="alert alert-success"
+			style="color: rgb(0, 255, 0);">
+			<p th:text="${success}"></p>
+		</div>
+
+		<!-- Mensaje de error si está presente -->
+		<div th:if="${error}" class="alert alert-danger"
+			style="color: rgb(255, 0, 0);">
+			<p th:text="${error}"></p>
+		</div>
+
+		<form action="/user/login" method="post">
+			<input type="text" name="username" placeholder="Usuario" required>
+			<input type="password" name="password" placeholder="Contraseña" required> <input type="submit" value="Ingresar">
+		</form>
+
+		<div class="register-text">
+			<p>
+				¿No tienes cuenta? <a th:href="@{/user/register}">Regístrate aquí</a>
+			</p>
+			<br> 
+			<a th:href="@{#}" onclick="olvideContrasena()">Olvidé mi contraseña</a>
+		</div>
+		
+		<div class="container text-center mt-5">
+			<br>
+			<a th:href="@{#}" onclick="problema()" style="text-decoration: none; color: white; font-size: 13px;">
+				<span>Algo no funciona aquí...</span>
+			</a>
+		</div>
+
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/js/pass.js}"></script>
+	
+
+</body>
+
+</html>

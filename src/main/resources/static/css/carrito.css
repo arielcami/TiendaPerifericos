@@ -1,0 +1,110 @@
+#header {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    padding: 20px 0;
+}
+
+.header-logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-search .input-select,
+.header-search .input {
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+}
+
+.header-search .input {
+    width: 60%;
+}
+
+.header-search .search-btn {
+    padding: 10px;
+    background-color: #d32f2f; /* Botón de búsqueda rojo */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.header-ctn a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.header-ctn a:hover {
+    color: #d32f2f; /* Efecto hover rojo */
+}
+
+
+.carrito-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.carrito-header {
+    font-weight: bold;
+    padding: 15px 0;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.carrito-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+}
+
+.img-carrito {
+    width: 80px;
+    margin-right: 15px;
+}
+
+.cantidad-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.total-producto {
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-eliminar {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #b71c1c;
+}
+
+.carrito-total {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.carrito-total h3 {
+    margin-bottom: 20px;
+}
+
+.carrito-total button {
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.carrito-total button:hover {
+    background-color: #b71c1c;
+}

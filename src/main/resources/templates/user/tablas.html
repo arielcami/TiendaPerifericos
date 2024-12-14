@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualizar Carrito y Productos</title>
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            margin-top: 40px;
+        }
+
+        .username-style {
+            font-weight: bold;
+        }
+
+        .storage-container {
+            margin-top: 30px;
+        }
+
+        .storage-item {
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Visualizar Carrito y Productos</h1>
+
+        <!-- Mostrar el nombre del usuario si está logueado -->
+        <div id="user-info">
+            <h4>Bienvenido, <span id="username" class="username-style"></span></h4>
+        </div>
+
+        <!-- Tabla para visualizar los productos en el carrito -->
+        <div class="table-container">
+            <h3>Productos en Carrito</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto ID</th>
+                        <th>Producto Precio</th>
+                        <th>Cantidad</th>
+                        <th>Stock Disponible</th>
+                    </tr>
+                </thead>
+                <tbody id="productosEnCarritoTableBody">
+                    <!-- Los registros de la tabla 'productos_en_carrito' se insertarán aquí -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabla para visualizar los productos en el carrito -->
+        <div class="table-container">
+            <h3>Productos en Carrito</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto ID</th>
+                        <th>Producto Precio</th>
+                        <th>Cantidad</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody id="carritoTableBody">
+                    <!-- Los registros de la tabla 'carrito' se insertarán aquí -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mostrar todos los datos en localStorage -->
+        <div class="storage-container">
+            <h3>Contenido de localStorage</h3>
+            <div id="localStorageContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Función para cargar el nombre de usuario desde localStorage
+        function cargarUsuario() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('username').textContent = username;
+            } else {
+                document.getElementById('user-info').innerHTML = '<h4>No has iniciado sesión</h4>';
+            }
+        }
+
+        // Función para cargar los productos en el carrito
+        function cargarProductosEnCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const carritoTableBody = document.getElementById('productosEnCarritoTableBody');
+
+            // Limpiar tabla antes de cargar nuevos datos
+            carritoTableBody.innerHTML = '';
+
+            // Agregar filas de la tabla 'productos_en_carrito'
+            carrito.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.productoID}</td>
+                    <td>${item.productoPrecio}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.productoStock}</td>
+                `;
+                carritoTableBody.appendChild(tr);
+            });
+        }
+
+        // Función para cargar los productos en el carrito
+        function cargarCarrito() {
+            const productosEnCarrito = JSON.parse(localStorage.getItem('productos_en_carrito')) || [];
+            const productosEnCarritoTableBody = document.getElementById('carritoTableBody');
+
+            // Limpiar tabla antes de cargar nuevos datos
+            productosEnCarritoTableBody.innerHTML = '';
+
+            // Agregar filas de la tabla 'carrito'
+            productosEnCarrito.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.productoID}</td>
+                    <td>${item.productoPrecio}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.usuario}</td>
+                `;
+                productosEnCarritoTableBody.appendChild(tr);
+            });
+        }
+
+        // Función para mostrar todo el contenido de localStorage
+        function mostrarLocalStorage() {
+            const localStorageContent = document.getElementById('localStorageContent');
+            localStorageContent.innerHTML = ''; // Limpiar el contenido antes de mostrar
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const storageItem = document.createElement('div');
+                storageItem.classList.add('storage-item');
+                storageItem.innerHTML = `<strong>${key}:</strong> ${value}`;
+                localStorageContent.appendChild(storageItem);
+            }
+        }
+
+        // Cargar ambas tablas, la información del usuario y el contenido de localStorage al cargar la página
+        window.onload = function () {
+            cargarUsuario();
+            cargarProductosEnCarrito();
+            cargarCarrito();
+            mostrarLocalStorage();  // Mostrar todo lo que hay en localStorage
+        }
+    </script>
+
+</body>
+
+</html>

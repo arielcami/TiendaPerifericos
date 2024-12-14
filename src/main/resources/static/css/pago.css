@@ -1,0 +1,146 @@
+#header {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    padding: 20px 0;
+}
+
+.header-logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-search .input-select,
+.header-search .input {
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+}
+
+.header-search .input {
+    width: 60%;
+}
+
+.header-search .search-btn {
+    padding: 10px;
+    background-color: #d32f2f; /* Botón de búsqueda rojo */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.header-ctn a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.header-ctn a:hover {
+    color: #d32f2f; /* Efecto hover rojo */
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.header {
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.logo {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #222; /* Línea negra alrededor */
+}
+
+.payment-form-box {
+    text-align: center;
+}
+
+.payment-form-box h2 {
+    color: #e63946; /* Rojo fuerte */
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #222; /* Borde negro */
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+    color: #888;
+}
+
+.payment-section {
+    display: none; /* Ocultar las secciones hasta que se seleccione el método de pago */
+}
+
+#card-section {
+    display: block; /* Mostrar por defecto la sección de tarjeta */
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    background-color: #e63946; /* Rojo fuerte */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #222; /* Borde negro */
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #d62828; /* Rojo oscuro */
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #222;
+    color: white;
+    margin-top: auto; /* Empuja el pie de página hacia el fondo */
+    width: 100%;
+    border-top: 2px solid #e63946; /* Línea roja en el pie de página */
+}
